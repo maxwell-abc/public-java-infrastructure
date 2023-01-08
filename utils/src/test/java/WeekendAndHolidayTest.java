@@ -1,8 +1,10 @@
 import com.maxwell.utils.weekendandholiday.WeekendAndHoliday;
+import com.maxwell.utils.weekendandholiday.WritExcelBean;
 import lombok.Setter;
 import lombok.experimental.StandardException;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.asm.Advice;
+import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.util.List;
 
 /**
  * 节假日功能测试类
@@ -37,4 +40,11 @@ public class WeekendAndHolidayTest {
         LocalDate firstDayOfYear = nowDate.with(TemporalAdjusters.firstDayOfYear());
         log.info("current year first Day: {}",firstDayOfYear);
     }
+
+    @Test
+    public void getWeekendDayTest(){
+        List<WritExcelBean> result = weekendAndHoliday.getWeekendDay();
+        log.info(JSONArray.toJSONString(result));
+    }
+
 }
